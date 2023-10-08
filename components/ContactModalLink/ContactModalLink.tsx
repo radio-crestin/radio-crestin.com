@@ -16,14 +16,14 @@ export function ContactModalLink() {
   const {isOpen, onOpen, onClose} = useDisclosure();
   return (
     <>
-      <Button
-        onClick={onOpen}
-        isActive={true}
-        fontWeight={500}
-        p={2}
-        variant={'link'}>
-        Contact
-      </Button>
+      {/*<Button*/}
+      {/*  onClick={onOpen}*/}
+      {/*  isActive={true}*/}
+      {/*  fontWeight={500}*/}
+      {/*  p={2}*/}
+      {/*  variant={'link'}>*/}
+      {/*  Contact*/}
+      {/*</Button>*/}
 
       <Modal
         isOpen={isOpen}

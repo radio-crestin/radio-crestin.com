@@ -1,12 +1,13 @@
-import styles from 'styles/Home.module.scss';
 import React from 'react';
 import {useMediaQuery} from '@chakra-ui/react';
+
+import styles from './styles.module.scss';
 
 export default function WhatsAppButton(props: any) {
   const [isTabletOrMobile] = useMediaQuery('(max-width: 1024px)');
   return (
     <a
-      href="https://wa.me/40773994595?text=Buna ziua"
+      href="https://wa.me/40773994595?text=Buna%20ziua%20[radio-crestin.com]%0A"
       target="_blank"
       className={styles.contactButton}
       style={{
