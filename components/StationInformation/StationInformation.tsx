@@ -95,7 +95,7 @@ export default function StationInformation(props: any) {
           }}
           size={20}
           value={StationRating}
-          isHalf={true}
+          isHalf={false}
           activeColor="#fe7f38"
         />
         {/* @ts-ignore */}
