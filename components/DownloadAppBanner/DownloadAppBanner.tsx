@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {Box, Text} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import styles from './DownloadAppBanner.module.scss';
 
 export default function DownloadAppBanner() {
@@ -18,6 +18,7 @@ export default function DownloadAppBanner() {
       <Box
         minW={{md: '390px', lg: '625px'}}
         paddingLeft={{base: '20px', md: '60px'}}
+        paddingRight={{ base: '20px', md: '0' }}
         paddingBottom={20}>
         <Text fontSize={32} fontWeight={700} letterSpacing={0.7}>
           Descarcă aplicația Radio Creștin
@@ -26,8 +27,11 @@ export default function DownloadAppBanner() {
           Toate posturile tale preferate într-un singur loc, gratis și fără
           reclame.
         </Text>
-        <Box mt={5} display={'flex'} gap={2} alignItems={'center'}>
-          <Link href="https://apps.apple.com/app/6451270471">
+        <Box mt={5} display={'flex'} gap={2} alignItems={'center'} w={'100%'}
+          maxWidth={450}>
+          <Box width={'33%'}>
+            <Link href="https://apps.apple.com/app/6451270471"
+              target={"_blank"}>
             <Image
               src={'/images/appstore.svg'}
               width={150}
@@ -35,18 +39,31 @@ export default function DownloadAppBanner() {
               alt={'AppStore Image Radio Crestin'}
             />
           </Link>
+          </Box>
+          <Box width={'33%'}>
           <Link
             href="https://play.google.com/store/apps/details?id=com.radiocrestin.radio_crestin&hl=en_US"
-            style={{position: 'relative'}}>
+            style={{ position: 'relative' }} target={"_blank"}>
             <Image
-              className={styles.playstore_link}
               src={'/images/playstore.svg'}
               width={150}
               height={53}
               alt={'PlayStore Image Radio Crestin'}
             />
-            <p className={styles.beta}>BETA</p>
           </Link>
+          </Box>
+          <Box width={'33%'}>
+            <Link
+              href="https://appgallery.huawei.com/app/C109055331"
+              style={{ position: 'relative' }} target={"_blank"}>
+              <Image
+                src={'/images/appgallery.svg'}
+                width={150}
+                height={53}
+                alt={'PlayStore Image Radio Crestin'}
+              />
+          </Link>
+        </Box>
         </Box>
       </Box>
       <Box
