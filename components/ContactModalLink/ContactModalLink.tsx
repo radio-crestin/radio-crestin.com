@@ -52,7 +52,7 @@ export function ContactModalLink() {
             <Text mt={0.9}>
               WhatsApp:
               <Link
-                href={'https://wa.me/40773994595?text=Buna%20ziua'}
+                href={'https://wa.me/40766338046?text=Buna%20ziua'}
                 color="teal.500"
                 ml={1}
                 isExternal>
