@@ -1,19 +1,32 @@
 import {StationsMetadata} from '../types';
 import {PROJECT_ENV} from '@/utils/env';
+import http from "http";
+import https from "https";
+import Axios from 'axios';
+import { setupCache } from 'axios-cache-interceptor';
 
-const cachios = require('cachios');
+// same object, but with updated typings.
+const axiosCached = setupCache(Axios);
+
 
 // A variable to store the last good API response data
 let lastGoodData: StationsMetadata | null = null;
 
 // Function to get station metadata
 export const getStationsMetadata = (): Promise<StationsMetadata> => {
-  return cachios
-    .post(
-      PROJECT_ENV.FRONTEND_GRAPHQL_INTERNAL_ENDPOINT_URI,
+  return axiosCached
+    .request(
       {
-        operationName: 'GetStations',
-        query: `
+        method: "POST",
+        url: PROJECT_ENV.FRONTEND_GRAPHQL_INTERNAL_ENDPOINT_URI,
+        httpAgent: new http.Agent({ keepAlive: true, keepAliveMsecs: 60 * 1000 }),
+        httpsAgent: new https.Agent({ keepAlive: true, keepAliveMsecs: 60 * 1000 }),
+        headers: {
+          'content-type': 'application/json',
+        },
+        data: {
+          operationName: 'GetStations',
+          query: `
 query GetStations {
   stations(order_by: {order: asc}) {
     id
@@ -76,13 +89,12 @@ query GetStations {
   }
 }
         `,
-        variables: {},
-      },
-      {
-        headers: {
-          'content-type': 'application/json',
+          variables: {},
         },
-        ttl: 5,
+        cache: {
+          methods: ['get', 'post'],
+          ttl: 5 * 1000
+        }
       },
     )
     .then((response: any) => {
