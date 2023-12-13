@@ -36,7 +36,7 @@ export default function StationInformation(props: any) {
   const numberOfListeners = station?.total_listeners
     ? station?.total_listeners + 1
     : null;
-  const latestPost = station.posts[0];
+  const latestPost = station.feature_latest_post? station.posts[0]: null;
   const toast = useToast();
 
   const [showErrorReview, setShowErrorReview] = useState(false)
@@ -139,6 +139,7 @@ export default function StationInformation(props: any) {
       )}
 
       <>
+      {latestPost  && (
         <Text
           as="h2"
           fontSize={{ base: 'md', lg: 'xl' }}
@@ -146,8 +147,9 @@ export default function StationInformation(props: any) {
           maxW={{ base: '100%', lg: '80%' }}
           noOfLines={1}
           fontWeight="bold">
-          {latestPost ? latestPost.title : station.title}
+          {latestPost.title}
         </Text>
+      )}
         <Text
           fontSize={{ base: 'md', lg: 'xl' }}
           mt="1"
@@ -156,13 +158,13 @@ export default function StationInformation(props: any) {
           {latestPost ? latestPost.description : station.description}
         </Text>
         <Link
-          href={latestPost ? latestPost.link : station.website}
+          href={latestPost ? latestPost.link : station.description_link || station.website}
           mt={{ base: 2, lg: 3 }}
           fontSize={'md'}
           isExternal>
           {latestPost && latestPost.link
             ? 'Continuă citirea articolului'
-            : 'Vizitează site-ul web'}{' '}
+            : (station.description_link? station.description_action_title : 'Vizitează site-ul web')}{' '}
           <ExternalLinkIcon mx="2px" width={4} height={4} />
         </Link>
       </>
