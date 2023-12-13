@@ -132,6 +132,9 @@ export default function StationList({
   const selectedStation: Station = stations.find(
     s => s.slug === route.asPath.split('/')[2],
   );
+  const sortedStations = Object.values(stations).sort((a: Station, b: Station) =>
+    a.title.localeCompare(b.title)
+  );
 
   return (
     <Center>
@@ -145,8 +148,8 @@ export default function StationList({
           xl: 'repeat(5, 1fr)',
         }}
         gap={9}>
-        {Object.values(stations).length > 0 ? (
-          Object.values(stations).map((station: Station): any => (
+        {Object.values(sortedStations).length > 0 ? (
+          Object.values(sortedStations).map((station: Station): any => (
             <GridItem as="button" key={station.id}>
               <Link
                 prefetch={false}

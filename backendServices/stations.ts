@@ -15,7 +15,7 @@ export const getStationsMetadata = (): Promise<StationsMetadata> => {
         operationName: 'GetStations',
         query: `
 query GetStations {
-  stations(order_by: {title: asc}) {
+  stations {
     id
     slug
     order
