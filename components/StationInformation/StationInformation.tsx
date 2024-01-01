@@ -1,26 +1,7 @@
 import React, { useState } from 'react';
 
 import FacebookIcon from '@/public/facebook.svg';
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Image,
-  Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  Textarea,
-  useDisclosure,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormLabel, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Textarea, useDisclosure, useToast, } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 // @ts-ignore
 import ReactStars from 'react-rating-stars-component';
@@ -39,7 +20,8 @@ export default function StationInformation(props: any) {
   const latestPost = station.feature_latest_post? station.posts[0]: null;
   const toast = useToast();
 
-  const [showErrorReview, setShowErrorReview] = useState(false)
+  const [showErrorStars, setShowErrorStars] = useState(false)
+  const [showErrorTextBox, setShowErrorTextBox] = useState(false)
   const [userReviewStars, setUserReviewStars] = useState(0);
   const [userReviewMessage, setUserReviewMessage] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,8 +30,15 @@ export default function StationInformation(props: any) {
 
   const submitReviewMessage = async () => {
     if (userReviewStars === 0) {
-      setShowErrorReview(true)
-      return
+      setShowErrorStars(true)
+    }
+
+    if (userReviewMessage === '') {
+      setShowErrorTextBox(true)
+    }
+
+    if (userReviewStars === 0 || userReviewMessage === '') {
+      return;
     }
 
     onClose();
@@ -104,7 +93,8 @@ export default function StationInformation(props: any) {
 
         <Text
           onClick={() => {
-            setShowErrorReview(false);
+            setShowErrorTextBox(false);
+            setShowErrorStars(false);
             setUserReviewStars(0);
             setUserReviewMessage('');
             onOpen();
@@ -184,6 +174,10 @@ export default function StationInformation(props: any) {
               key={`rating-editable-${station.id}`}
               onChange={(rating: number) => {
                 setUserReviewStars(rating);
+
+                if (rating !== 0) {
+                  setShowErrorStars(false)
+                }
               }}
               count={5}
               size={40}
@@ -200,26 +194,36 @@ export default function StationInformation(props: any) {
               {userReviewStars === 5 && 'Excelent'}
             </Text>
           </Box>
-          {showErrorReview &&
+          {showErrorStars &&
             <Text color={"#be2007"} px={5}>
-              Pe o scară de la 1 la 5, cât de mult ți-a plăcut {station.title}?
+              *Pe o scară de la 1 la 5, cât de mult ți-a plăcut <b>{station.title}</b>?
             </Text>
           }
           <ModalCloseButton />
-          <ModalBody pb={6} pt={5}>
+          <ModalBody pb={2} pt={5}>
             <FormControl>
-              <FormLabel>Mesajul dumneavoastră</FormLabel>
+              <FormLabel>Mesajul dumneavoastră*</FormLabel>
               <Textarea
                 ref={initialRef}
-                placeholder="Introduceți mesajul dumneavoastră aici... (optional)"
+                placeholder="Introduceți mesajul dumneavoastră aici..."
                 onChange={e => {
                   setUserReviewMessage(e.target.value);
+
+                  if (e.target.value !== '') {
+                    setShowErrorTextBox(false)
+                  }
                 }}
                 size="sm"
                 resize={'none'}
               />
             </FormControl>
           </ModalBody>
+          {showErrorTextBox &&
+            <Text color={"#be2007"} px={5}>
+              *Adaugă și un mesaj pentru a-ți spune părerea
+              despre <b>{station.title}</b>.
+            </Text>
+          }
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={submitReviewMessage}>
