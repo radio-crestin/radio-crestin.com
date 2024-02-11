@@ -9,6 +9,7 @@ const withConfig = nextRuntimeDotenv({
 
 const allowedCDNs = [
   'radio-crestin.s3.amazonaws.com',
+  'radio-crestin.s3.eu-central-1.amazonaws.com',
   'cdn.pictures.aripisprecer.ro',
   'pictures.aripisprecer.ro',
   'images.radio.co',

@@ -1,8 +1,8 @@
 @use '../../styles/mixinHelper';
 
-.image_iphone12 {
+.image_iphone13 {
   position: absolute;
-  right: 0;
+  right: -25px;
   bottom: 0;
 
   @include mixinHelper.onTablet {
@@ -10,7 +10,7 @@
   }
 }
 
-.image_iphone12_mobile {
+.image_iphone13_mobile {
   display: none;
   position: relative;
   margin: 0 auto;

@@ -71,18 +71,18 @@ export default function DownloadAppBanner() {
         width={{base: '100%', lg: '500px'}}
         marginRight={{base: 0, lg: 90, xl: 150}}>
         <Image
-          className={styles.image_iphone12}
+          className={styles.image_iphone13}
           width={500}
           height={500}
-          src={'/images/iphone12-mock.png'}
-          alt={'iPhone 12 Radio Crestin'}
+          src={'https://radio-crestin.s3.eu-central-1.amazonaws.com/media/public/iphone_desktop_size.png'}
+          alt={'iPhone 13 Radio Crestin'}
         />
         <Image
-          className={styles.image_iphone12_mobile}
+          className={styles.image_iphone13_mobile}
           width={400}
           height={400}
-          src={'/images/iphone12_mobile.png'}
-          alt={'iPhone 12 Radio Crestin'}
+          src={'https://radio-crestin.s3.eu-central-1.amazonaws.com/media/public/iphone_mob_size.png'}
+          alt={'iPhone 13 Radio Crestin'}
         />
       </Box>
       <Image
