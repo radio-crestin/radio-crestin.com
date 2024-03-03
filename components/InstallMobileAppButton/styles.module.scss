@@ -7,14 +7,16 @@
   .mobileAppButtonContainer {
     display: block;
     position: relative;
-    padding: 22px 30px;
+    padding: 40px 20px;
     background: #edf2f7;
-    margin: 0 -25px -15px -25px;
   }
   .mobileAppDescription {
     font-size: 1.1rem;
     line-height: 1.3rem;
     margin-bottom: 10px;
+  }
+  .mobileAppButtonGooglePlay {
+    width: 160px;
   }
   .mobileAppLinkApps {
     display: flex;

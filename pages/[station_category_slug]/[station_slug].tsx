@@ -86,22 +86,10 @@ export default function StationPage({
         selectedStation={selectedStation}
       />
 
+      <InstallMobileAppButton/>
       <Body>
         <WhatsAppButton selectedStation={selectedStation}/>
-        <Container maxW={'8xl'} overflow={'hidden'}>
-          <InstallMobileAppButton/>
-          <Box
-            display={'flex'}
-            alignItems={'center'}
-            justifyContent={'flex-end'}
-            my={4}
-            gap={2}>
-            <ContactModalLink />
-            {/*<SearchStationsModal*/}
-            {/*  station_group={selectedStationGroup}*/}
-            {/*  stations={stations}*/}
-            {/*/>*/}
-          </Box>
+        <Container maxW={'8xl'} overflow={'hidden'} mt={4}>
           {selectedStation && (
             <StationHomepageHeader selectedStation={selectedStation} />
           )}

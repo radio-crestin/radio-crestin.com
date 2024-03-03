@@ -17,7 +17,7 @@ export default function StationGroups({
   return (
     <Flex
       ml={2}
-      mt={6}
+      mt={0}
       mb={9}
       mx={{base: -4, lg: 0}}
       alignItems="center"
