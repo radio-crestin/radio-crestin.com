@@ -88,7 +88,7 @@ export default function StationPage({
 
       <Body>
         <WhatsAppButton selectedStation={selectedStation}/>
-        <Container maxW={'8xl'}>
+        <Container maxW={'8xl'} overflow={'hidden'}>
           <InstallMobileAppButton/>
           <Box
             display={'flex'}

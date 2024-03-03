@@ -7,7 +7,7 @@ export default function InstallMobileAppButton() {
   return (
     <div className={`${styles.mobileAppButtonContainer}`}>
       <p className={`${styles.mobileAppDescription}`}>
-        Ascultă în aplicația mobilă
+        Te invităm să instalezi aplicația mobilă Radio Creștin.
       </p>
       <div className={`${styles.mobileAppLinkApps}`}>
         <a
