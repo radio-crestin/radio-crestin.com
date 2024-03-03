@@ -22,6 +22,9 @@ import {seoStation} from '@/utils/seo';
 import {parse} from 'url';
 import HeadContainer from '@/components/HeadContainer';
 import DownloadAppBanner from '@/components/DownloadAppBanner/DownloadAppBanner';
+import WhatsAppButton from "@/components/WhatsAppButton";
+import InstallMobileAppButton
+  from "@/components/InstallMobileAppButton/InstallMobileAppButton";
 
 const StationPlayer = dynamic(() => import('@/components/StationPlayer'), {
   ssr: false,
@@ -82,8 +85,11 @@ export default function StationPage({
         fullURL={fullURL}
         selectedStation={selectedStation}
       />
+
       <Body>
+        <WhatsAppButton selectedStation={selectedStation}/>
         <Container maxW={'8xl'}>
+          <InstallMobileAppButton/>
           <Box
             display={'flex'}
             alignItems={'center'}
@@ -91,10 +97,10 @@ export default function StationPage({
             my={4}
             gap={2}>
             <ContactModalLink />
-            <SearchStationsModal
-              station_group={selectedStationGroup}
-              stations={stations}
-            />
+            {/*<SearchStationsModal*/}
+            {/*  station_group={selectedStationGroup}*/}
+            {/*  stations={stations}*/}
+            {/*/>*/}
           </Box>
           {selectedStation && (
             <StationHomepageHeader selectedStation={selectedStation} />

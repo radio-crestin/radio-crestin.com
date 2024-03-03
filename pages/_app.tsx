@@ -18,7 +18,6 @@ const theme = extendTheme({colors})
 
 function MyApp({Component, pageProps}: AppProps) {
   return <ChakraProvider theme={theme}>
-    <WhatsAppButton />
     <Component {...pageProps} />
   </ChakraProvider>
 }

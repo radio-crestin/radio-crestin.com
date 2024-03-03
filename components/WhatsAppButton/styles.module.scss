@@ -1,11 +1,17 @@
-@use '../../styles/mixinHelper';
+@use "public/styles/mixinHelper";
+
+.contactButtonPlayerIsOn {
+  @include mixinHelper.onTablet {
+    bottom: 125px !important;
+  }
+}
 
 .contactButton {
   position: fixed;
   width: 60px;
   height: 60px;
-  bottom: 32px;
-  right: 33px;
+  right: 30px;
+  bottom: 30px;
   background-color: #25d366;
   color: #FFF;
   border-radius: 50px;
@@ -20,14 +26,11 @@
   -ms-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  z-index: 99999999;
+  z-index: 9;
 
-  @include mixinHelper.onMobile {
-    top: -5px !important;
-    left: 10px !important;
-    width: 50px;
-    height: 50px;
-    position: absolute;
+
+  @include mixinHelper.onTablet {
+    right: 15px;
   }
 
   .contactLinkButton {
@@ -36,5 +39,13 @@
     display: flex;
     margin-left: 2px;
     margin-top: 2px;
+
+    @include mixinHelper.onTablet {
+      height: 25px;
+      width: 25px;
+      margin-left: 3px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
   }
 }

@@ -1,0 +1,30 @@
+@use "public/styles/mixinHelper";
+
+.mobileAppButtonContainer {
+  display: none;
+}
+@include mixinHelper.onTablet {
+  .mobileAppButtonContainer {
+    display: block;
+    position: relative;
+    padding: 22px 30px;
+    background: black;
+    margin: 0 -25px -15px -25px;
+  }
+
+  .mobileAppDescription {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .mobileAppButton {
+    //padding: 20px 10px;
+  }
+  .mobileAppLinkApps {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    flex-wrap: wrap;
+  }
+}

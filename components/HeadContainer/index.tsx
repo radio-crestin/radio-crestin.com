@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function HeadContainer({selectedStation, seo, fullURL}: any) {
   return (
