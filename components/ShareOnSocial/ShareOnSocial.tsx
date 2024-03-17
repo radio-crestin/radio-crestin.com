@@ -1,4 +1,4 @@
-import { Flex, Button, Image } from "@chakra-ui/react";
+import { Flex, Button, Image, Wrap } from "@chakra-ui/react";
 import React from "react";
 
 export default function ShareOnSocial({station}: any) {
@@ -28,13 +28,16 @@ export default function ShareOnSocial({station}: any) {
         padding="12px 25px"
         fontSize="0.8rem"
         width={{ base:'50%', md: 'auto'}}
+        whiteSpace="normal"
+        height="auto"
+        blockSize="auto"
       >
-        <Image
-          src={'/icons/facebook.svg'}
-          mr={3}
-          alt={'Trimite pe Facebook'}
-        />
-        Trimite pe Facebook
+          <Image
+            src={'/icons/facebook.svg'}
+            mr={3}
+            alt={'Trimite pe Facebook'}
+          />
+          Trimite pe Facebook
       </Button>
       <Button
         as="a"
@@ -49,6 +52,9 @@ export default function ShareOnSocial({station}: any) {
         padding="12px 25px"
         fontSize="0.8rem"
         width={{ base:'50%', md: 'auto'}}
+        whiteSpace="normal"
+        height="auto"
+        blockSize="auto"
       >
         <Image
           src={'/icons/whatsapp.svg'}
