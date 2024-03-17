@@ -180,7 +180,7 @@ export default function StationInformation(props: any) {
         </Link>
 
 
-        <Box display={{base: "none", md:"block"}} mt={3}>
+        <Box display={{base: "none", md:"block"}} mt={3} my={4}>
           <ShareOnSocial station={station} />
         </Box>
       </>

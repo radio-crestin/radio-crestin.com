@@ -289,10 +289,6 @@ export default function StationPlayer({stations}: any) {
       margin="auto"
       zIndex={9}>
 
-      <Box display={{base: "block", md:"none"}} mx={4}>
-        <ShareOnSocial station={station} />
-      </Box>
-
       <Box
         bg={{ base: 'black' }}
         boxShadow={'0 10px 30px 0 rgb(0 0 0 / 15%)'}
@@ -424,6 +420,11 @@ export default function StationPlayer({stations}: any) {
             />
           </Flex>
         </Flex>
+      </Box>
+
+
+      <Box display={{base: "block", md:"none"}} mx={3} my={2}>
+        <ShareOnSocial station={station} />
       </Box>
     </Box>
   );

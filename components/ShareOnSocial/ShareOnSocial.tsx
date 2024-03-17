@@ -14,7 +14,7 @@ export default function ShareOnSocial({station}: any) {
   )}`;
 
   return (
-    <Flex direction={"row"} gap={{ base: 3, md: 3 }} my={4} w={'full'} justifyContent={{base: 'space-between', md:'start'}}>
+    <Flex direction={"row"} gap={{ base: 3, md: 3 }} w={'full'} justifyContent={{base: 'space-between', md:'start'}}>
       <Button
         as="a"
         href={facebookShareLink}
