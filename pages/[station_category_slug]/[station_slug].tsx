@@ -88,7 +88,7 @@ export default function StationPage({
 
       <InstallMobileAppButton/>
       <Body>
-        <WhatsAppButton selectedStation={selectedStation}/>
+        {/*<WhatsAppButton selectedStation={selectedStation}/>*/}
         <Container maxW={'8xl'} overflow={'hidden'} mt={4}>
           {selectedStation && (
             <StationHomepageHeader selectedStation={selectedStation} />

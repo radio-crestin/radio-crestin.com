@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
 
 import FacebookIcon from '@/public/facebook.svg';
-import { Box, Button, Flex, FormControl, FormLabel, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Textarea, useDisclosure, useToast, } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Image,
+  Link,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  Textarea,
+  useDisclosure,
+  useMediaQuery,
+  useToast,
+} from "@chakra-ui/react";
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 // @ts-ignore
 import ReactStars from 'react-rating-stars-component';
 import { postReviewClientSide } from '../../frontendServices/review';
+import ShareOnSocial from "@/components/ShareOnSocial/ShareOnSocial";
 
 export default function StationInformation(props: any) {
   const { station } = props;
@@ -157,6 +178,11 @@ export default function StationInformation(props: any) {
             : (station.description_link? station.description_action_title : 'Vizitează site-ul web')}{' '}
           <ExternalLinkIcon mx="2px" width={4} height={4} />
         </Link>
+
+
+        <Box display={{base: "none", md:"block"}} mt={3}>
+          <ShareOnSocial station={station} />
+        </Box>
       </>
 
       <Modal

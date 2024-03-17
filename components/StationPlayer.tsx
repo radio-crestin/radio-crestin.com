@@ -9,9 +9,9 @@ import {
   SliderTrack,
   Spacer,
   Text,
-  Tooltip,
+  Tooltip, useMediaQuery,
   useToast,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import {useLocalStorageState} from '@/utils/state';
 import {trackListenClientSide} from '../frontendServices/listen';
 import {CONSTANTS} from '../lib/constants';
@@ -19,6 +19,7 @@ import {Loading} from '@/public/images/loading';
 import {ImageWithFallback} from '@/components/ImageWithFallback/ImageWithFallback';
 import Hls from 'hls.js';
 import useSpaceBarPress from '@/hooks/useSpaceBarPress';
+import ShareOnSocial from "@/components/ShareOnSocial/ShareOnSocial";
 
 enum STREAM_TYPE {
   HLS = 'HLS',
@@ -276,25 +277,30 @@ export default function StationPlayer({stations}: any) {
 
   return (
     <Box
-      w={{base: '100%'}}
-      h={{base: 'auto'}}
-      minW={{base: 'auto'}}
+      w={{ base: '100%' }}
+      h={{ base: 'auto' }}
+      minW={{ base: 'auto' }}
       maxW={'560px'}
-      pl={{base: 0}}
+      pl={{ base: 0 }}
       position="fixed"
       bottom={0}
       right={0}
       left={0}
       margin="auto"
       zIndex={9}>
+
+      <Box display={{base: "block", md:"none"}} mx={4}>
+        <ShareOnSocial station={station} />
+      </Box>
+
       <Box
-        bg={{base: 'black'}}
+        bg={{ base: 'black' }}
         boxShadow={'0 10px 30px 0 rgb(0 0 0 / 15%)'}
         borderRadius={16}
-        m={{base: 3}}
-        p={{base: 2}}
-        display={{base: 'flex'}}
-        alignItems={{base: 'center'}}>
+        m={{ base: 3 }}
+        p={{ base: 2 }}
+        display={{ base: 'flex' }}
+        alignItems={{ base: 'center' }}>
         <ImageWithFallback
           src={
             station.now_playing?.song?.thumbnail_url ||
@@ -306,7 +312,7 @@ export default function StationPlayer({stations}: any) {
           htmlHeight={80}
           htmlWidth={80}
           loading={'eager'}
-          borderRadius={{base: '12px'}}
+          borderRadius={{ base: '12px' }}
           style={{
             objectFit: 'cover',
             width: '80px',
@@ -315,40 +321,40 @@ export default function StationPlayer({stations}: any) {
         />
         <Flex
           w={'100%'}
-          mt={{base: 0}}
-          ml={{base: 4}}
-          flexDirection={{base: 'row'}}>
+          mt={{ base: 0 }}
+          ml={{ base: 4 }}
+          flexDirection={{ base: 'row' }}>
           <Box
             display={'flex'}
             flexDirection={'column'}
             justifyContent={'center'}>
             <Text
               as="h2"
-              fontSize={{base: 'sm'}}
-              mt={{base: 0}}
+              fontSize={{ base: 'sm' }}
+              mt={{ base: 0 }}
               lineHeight={1.3}
-              color={{base: 'white'}}
+              color={{ base: 'white' }}
               noOfLines={2}
               fontWeight="700">
               {station.now_playing?.song?.name || (
-                <Box display={{base: 'block'}}>{station.title}</Box>
+                <Box display={{ base: 'block' }}>{station.title}</Box>
               )}
             </Text>
             <Text
               as="h3"
-              fontSize={{base: 'sm'}}
-              color={{base: 'white'}}
+              fontSize={{ base: 'sm' }}
+              color={{ base: 'white' }}
               noOfLines={1}>
               {station.now_playing?.song?.artist.name}
             </Text>
           </Box>
           <Spacer marginLeft={2} />
           <Box
-            ml={{base: 4}}
+            ml={{ base: 4 }}
             margin={'auto'}
-            display={{base: 'none', md: 'block'}}>
+            display={{ base: 'none', md: 'block' }}>
             <Slider
-              w={{base: '100px'}}
+              w={{ base: '100px' }}
               marginTop={2}
               aria-label="Volume"
               defaultValue={volume}
@@ -356,17 +362,17 @@ export default function StationPlayer({stations}: any) {
               onChange={value => {
                 setVolume(value as number);
               }}>
-              <SliderTrack bg={{base: 'gray.400'}}>
-                <SliderFilledTrack bg={{base: 'white'}} />
+              <SliderTrack bg={{ base: 'gray.400' }}>
+                <SliderFilledTrack bg={{ base: 'white' }} />
               </SliderTrack>
               <SliderThumb boxSize={5} />
             </Slider>
           </Box>
           <Flex
-            w={{base: 'fit-content'}}
-            mt={{base: 0}}
-            ml={{base: 3, md: 6}}
-            mr={{base: 2, md: 5}}
+            w={{ base: 'fit-content' }}
+            mt={{ base: 0 }}
+            ml={{ base: 3, md: 6 }}
+            mr={{ base: 2, md: 5 }}
             alignItems="center">
             <button
               name="Start/Stop"
@@ -384,7 +390,7 @@ export default function StationPlayer({stations}: any) {
                 }
               }}>
               <Tooltip label="Start/Stop [Space]">
-                <Box fill={{base: 'white'}}>
+                <Box fill={{ base: 'white' }}>
                   <svg
                     width="50px"
                     height="50px"
