@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Spacer, Text, Tooltip, useToast, } from "@chakra-ui/react";
-import { useLocalStorageState } from '@/utils/state';
-import { trackListenClientSide } from '../frontendServices/listen';
-import { CONSTANTS } from '../lib/constants';
-import { Loading } from '@/public/images/loading';
-import { ImageWithFallback } from '@/components/ImageWithFallback/ImageWithFallback';
+import React, {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
+import {
+  Box,
+  Flex,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Spacer,
+  Text,
+  Tooltip, useMediaQuery,
+  useToast,
+} from "@chakra-ui/react";
+import {useLocalStorageState} from '@/utils/state';
+import {trackListenClientSide} from '../frontendServices/listen';
+import {CONSTANTS} from '../lib/constants';
+import {Loading} from '@/public/images/loading';
+import {ImageWithFallback} from '@/components/ImageWithFallback/ImageWithFallback';
 import Hls from 'hls.js';
 import useSpaceBarPress from '@/hooks/useSpaceBarPress';
 import ShareOnSocial from "@/components/ShareOnSocial/ShareOnSocial";
-import { sleep } from "@/utils/sleep";
 
 enum STREAM_TYPE {
-  NONE = "NONE",
   HLS = 'HLS',
   PROXY = 'PROXY',
   ORIGINAL = 'ORIGINAL',
@@ -27,12 +36,12 @@ enum PLAYBACK_STATE {
 
 const MAX_MEDIA_RETRIES = 20;
 
-export default function StationPlayer ({ stations }: any) {
+export default function StationPlayer({stations}: any) {
   const toast = useToast();
   const router = useRouter();
-  const { station_slug } = router.query;
+  const {station_slug} = router.query;
   const [retries, setRetries] = useState(MAX_MEDIA_RETRIES);
-  const [playbackState, setPlaybackState] = useState(PLAYBACK_STATE.BUFFERING);
+  const [playbackState, setPlaybackState] = useState(PLAYBACK_STATE.STOPPED);
   const [volume, setVolume] = useLocalStorageState(25, 'AUDIO_PLAYER_VOLUME');
   const [streamType, setStreamType] = useState(STREAM_TYPE.HLS);
 
@@ -47,17 +56,11 @@ export default function StationPlayer ({ stations }: any) {
     audio: HTMLAudioElement,
     hls: Hls,
   ) => {
-    if (
-      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
-      audio.canPlayType("application/vnd.apple.mpegurl")
-    ) {
-      audio.src = hls_stream_url;
-      audio.load();
-      audio.play().catch(retryMechanism);
-      return;
-    } else if (Hls.isSupported()) {
+    if (Hls.isSupported()) {
       hls.loadSource(hls_stream_url);
       hls.attachMedia(audio);
+    } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+      audio.src = hls_stream_url;
     }
 
     hls.on(Hls.Events.AUDIO_TRACK_LOADING, function () {
@@ -69,16 +72,17 @@ export default function StationPlayer ({ stations }: any) {
       audio.addEventListener(
         'canplaythrough',
         function () {
-          audio.play().catch(retryMechanism);
+          audio.play().catch(() => {
+            setPlaybackState(PLAYBACK_STATE.STOPPED);
+          });
         },
-        { once: true },
+        {once: true},
       );
     });
 
     hls.on(Hls.Events.ERROR, function (event, data) {
       if (data.fatal) {
-        setPlaybackState(PLAYBACK_STATE.BUFFERING);
-        retryMechanism(event);
+        retryMechanism();
       }
     });
   };
@@ -89,16 +93,18 @@ export default function StationPlayer ({ stations }: any) {
 
     switch (playbackState) {
       case PLAYBACK_STATE.STARTED:
-        setStreamType(STREAM_TYPE.HLS);
+        audio.play().catch(() => {
+          setPlaybackState(PLAYBACK_STATE.STOPPED);
+        });
         break;
       case PLAYBACK_STATE.STOPPED:
-        setStreamType(STREAM_TYPE.NONE);
+        audio.pause();
         break;
     }
   }, [playbackState]);
 
   const station = stations.find(
-    (station: { slug: string }) => station.slug === station_slug,
+    (station: {slug: string}) => station.slug === station_slug,
   );
 
   if (!station) {
@@ -121,27 +127,21 @@ export default function StationPlayer ({ stations }: any) {
     const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
     if (!audio) return;
 
-    if (streamType === STREAM_TYPE.NONE) {
-      audio.src = "/assets/empty.mp3";
-      audio.muted = true;
-      audio.pause();
-      setPlaybackState(PLAYBACK_STATE.STOPPED);
-      return;
-    } else {
-      audio.muted = false;
-    }
-
     switch (streamType) {
       case STREAM_TYPE.HLS:
         loadHLS(station.hls_stream_url, audio, hls);
         break;
       case STREAM_TYPE.PROXY:
         audio.src = station.proxy_stream_url;
-        audio.play().catch(retryMechanism);
+        audio.play().catch(() => {
+          setPlaybackState(PLAYBACK_STATE.STOPPED);
+        });
         break;
       case STREAM_TYPE.ORIGINAL:
         audio.src = station.stream_url;
-        audio.play().catch(retryMechanism);
+        audio.play().catch(() => {
+          setPlaybackState(PLAYBACK_STATE.STOPPED);
+        });
     }
 
     return () => {
@@ -149,15 +149,9 @@ export default function StationPlayer ({ stations }: any) {
     };
   }, [streamType, station.slug]);
 
-  const retryMechanism = async (error: any) => {
-    if (error.name === 'NotAllowedError') {
-      setPlaybackState(PLAYBACK_STATE.STOPPED);
-      return;
-    }
+  const retryMechanism = () => {
     const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
     if (!audio) return;
-
-    await sleep(300)
 
     setRetries(retries - 1);
     if (retries > 0) {
@@ -420,7 +414,9 @@ export default function StationPlayer ({ stations }: any) {
               onWaiting={() => {
                 setPlaybackState(PLAYBACK_STATE.BUFFERING);
               }}
-              onError={retryMechanism}
+              onError={() => {
+                retryMechanism();
+              }}
             />
           </Flex>
         </Flex>
