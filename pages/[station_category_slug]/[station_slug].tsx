@@ -25,6 +25,7 @@ import DownloadAppBanner from '@/components/DownloadAppBanner/DownloadAppBanner'
 import WhatsAppButton from "@/components/WhatsAppButton";
 import InstallMobileAppButton
   from "@/components/InstallMobileAppButton/InstallMobileAppButton";
+import WhatsAppBibleGroup from "@/components/WhatsAppBibleGroup";
 
 const StationPlayer = dynamic(() => import('@/components/StationPlayer'), {
   ssr: false,
@@ -98,6 +99,7 @@ export default function StationPage({
             selectedStation={selectedStation}
             selectedStationGroup={selectedStationGroup}
           />
+          <WhatsAppBibleGroup/>
           <StationList
             station_group={selectedStationGroup}
             stations={displayedStations}
