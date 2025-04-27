@@ -61,6 +61,12 @@ export interface Station {
   uptime?: StationUptime;
   now_playing?: StationNowPlaying;
   reviews: StationReview[];
+  station_streams: IStationStreams[];
+}
+
+export interface IStationStreams {
+  type: "HLS" | "proxied_stream" | "direct_stream";
+  stream_url: string;
 }
 
 export interface StationGroup {

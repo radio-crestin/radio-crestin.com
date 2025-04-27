@@ -23,8 +23,8 @@ import ShareOnSocial from "@/components/ShareOnSocial/ShareOnSocial";
 
 enum STREAM_TYPE {
   HLS = 'HLS',
-  PROXY = 'PROXY',
-  ORIGINAL = 'ORIGINAL',
+  PROXY = 'proxied_stream',
+  ORIGINAL = 'direct_stream',
 }
 
 enum PLAYBACK_STATE {
@@ -43,13 +43,43 @@ export default function StationPlayer({stations}: any) {
   const [retries, setRetries] = useState(MAX_MEDIA_RETRIES);
   const [playbackState, setPlaybackState] = useState(PLAYBACK_STATE.STOPPED);
   const [volume, setVolume] = useLocalStorageState(25, 'AUDIO_PLAYER_VOLUME');
-  const [streamType, setStreamType] = useState(STREAM_TYPE.HLS);
+  const [streamType, setStreamType] = useState<STREAM_TYPE | null>(null);
+  const [hlsInstance, setHlsInstance] = useState<Hls | null>(null);
+
+  const station = stations.find(
+    (station: {slug: string}) => station.slug === station_slug,
+  );
+
+  useEffect(() => {
+    if (!station) return;
+    const preferredStreamOrder = [
+      STREAM_TYPE.HLS,
+      STREAM_TYPE.PROXY,
+      STREAM_TYPE.ORIGINAL,
+    ];
+
+    const availableStreamType = preferredStreamOrder.find((type) =>
+      station.station_streams.some(
+        (stream: any) => stream.type === type,
+      ),
+    );
+
+    setStreamType(availableStreamType || null);
+  }, [station?.slug]);
 
   useEffect(() => {
     const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
     if (!audio) return;
     audio.volume = volume / 100;
   }, [volume]);
+
+  const getStreamUrl = (type: STREAM_TYPE | null) => {
+    if (!type) return null;
+    const stream = station.station_streams.find(
+      (stream: any) => stream.type === type,
+    );
+    return stream?.stream_url || null;
+  };
 
   const loadHLS = (
     hls_stream_url: string,
@@ -87,25 +117,50 @@ export default function StationPlayer({stations}: any) {
     });
   };
 
+  const resetAndReloadStream = () => {
+    const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
+    if (!audio || !streamType) return;
+
+    if (hlsInstance) {
+      hlsInstance.destroy();
+    }
+
+    const streamUrl = getStreamUrl(streamType);
+    if (!streamUrl) {
+      retryMechanism();
+      return;
+    }
+
+    if (streamType === STREAM_TYPE.HLS) {
+      const newHls = new Hls();
+      setHlsInstance(newHls);
+      loadHLS(streamUrl, audio, newHls);
+    } else {
+      audio.src = streamUrl;
+      audio.load();
+      audio.play().catch(() => {
+        retryMechanism();
+      });
+    }
+  };
+
   useEffect(() => {
     const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
     if (!audio) return;
 
     switch (playbackState) {
       case PLAYBACK_STATE.STARTED:
-        audio.play().catch(() => {
-          setPlaybackState(PLAYBACK_STATE.STOPPED);
-        });
+        resetAndReloadStream();
         break;
       case PLAYBACK_STATE.STOPPED:
         audio.pause();
+        if (hlsInstance) {
+          hlsInstance.stopLoad();
+          hlsInstance.detachMedia();
+        }
         break;
     }
   }, [playbackState]);
-
-  const station = stations.find(
-    (station: {slug: string}) => station.slug === station_slug,
-  );
 
   if (!station) {
     return <></>;
@@ -117,30 +172,37 @@ export default function StationPlayer({stations}: any) {
     audio.volume = volume / 100;
 
     return () => {
-      setStreamType(STREAM_TYPE.HLS);
       setRetries(20);
     };
   }, [station.slug]);
 
   useEffect(() => {
-    const hls = new Hls();
     const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
-    if (!audio) return;
+    if (!audio || !streamType) return;
+
+    const streamUrl = getStreamUrl(streamType);
+    if (!streamUrl) {
+      retryMechanism();
+      return;
+    }
+
+    const hls = new Hls();
+    setHlsInstance(hls);
 
     switch (streamType) {
       case STREAM_TYPE.HLS:
-        loadHLS(station.hls_stream_url, audio, hls);
+        loadHLS(streamUrl, audio, hls);
         break;
       case STREAM_TYPE.PROXY:
-        audio.src = station.proxy_stream_url;
+        audio.src = streamUrl;
         audio.play().catch(() => {
-          setPlaybackState(PLAYBACK_STATE.STOPPED);
+          retryMechanism();
         });
         break;
       case STREAM_TYPE.ORIGINAL:
-        audio.src = station.stream_url;
+        audio.src = streamUrl;
         audio.play().catch(() => {
-          setPlaybackState(PLAYBACK_STATE.STOPPED);
+          retryMechanism();
         });
     }
 
@@ -155,16 +217,28 @@ export default function StationPlayer({stations}: any) {
 
     setRetries(retries - 1);
     if (retries > 0) {
-      switch (streamType) {
-        case STREAM_TYPE.HLS:
-          setStreamType(STREAM_TYPE.PROXY);
+      const availableStreamTypes = station.station_streams.map(
+        (s: any) => s.type,
+      );
+      const streamOrder = [
+        STREAM_TYPE.HLS,
+        STREAM_TYPE.PROXY,
+        STREAM_TYPE.ORIGINAL,
+      ];
+
+      const currentIndex = streamType ? streamOrder.indexOf(streamType) : -1;
+      let nextIndex = currentIndex;
+
+      do {
+        nextIndex = (nextIndex + 1) % streamOrder.length;
+        if (availableStreamTypes.includes(streamOrder[nextIndex])) {
+          setStreamType(streamOrder[nextIndex]);
           break;
-        case STREAM_TYPE.PROXY:
-          setStreamType(STREAM_TYPE.ORIGINAL);
-          break;
-        case STREAM_TYPE.ORIGINAL:
-          setStreamType(STREAM_TYPE.HLS);
-          break;
+        }
+      } while (nextIndex !== currentIndex);
+
+      if (nextIndex === currentIndex) {
+        setStreamType(streamOrder[nextIndex]);
       }
     } else {
       toast({
