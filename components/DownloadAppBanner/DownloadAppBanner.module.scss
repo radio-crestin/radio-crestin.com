@@ -4,6 +4,7 @@
   position: absolute;
   right: -25px;
   bottom: 0;
+  pointer-events: none;
 
   @include mixinHelper.onTablet {
     display: none;
