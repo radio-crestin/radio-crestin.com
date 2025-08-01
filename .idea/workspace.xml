@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c169245-f477-44c8-a97e-7095f7031ef0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/wrangler.jsonc" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/wrangler.jsonc" afterDir="false" />
-    </list>
+    <list default="true" id="1c169245-f477-44c8-a97e-7095f7031ef0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +52,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.deploy.executor": "Run",
     "npm.dev.executor": "Run",
     "npm.start:dev.executor": "Run",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
@@ -124,7 +123,7 @@
       <updated>1736278163638</updated>
       <workItem from="1736278164712" duration="993000" />
       <workItem from="1745779749674" duration="3979000" />
-      <workItem from="1754036968216" duration="494000" />
+      <workItem from="1754036968216" duration="860000" />
     </task>
     <servers />
   </component>

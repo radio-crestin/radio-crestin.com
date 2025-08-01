@@ -143,9 +143,10 @@ app.get('/:category/:station', (c) => {
   return c.redirect(`https://www.radiocrestin.ro/${station}`, 301)
 })
 
-// Catch-all route for any not found pages - redirect to radiocrestin.ro
+// Catch-all route for any not found pages - redirect to radiocrestin.ro keeping the path
 app.get('*', (c) => {
-  return c.redirect('https://www.radiocrestin.ro/', 301)
+  const path = c.req.path
+  return c.redirect(`https://www.radiocrestin.ro${path}`, 301)
 })
 
 export default app
