@@ -132,10 +132,10 @@ app.get('/sitemap.xml', (c) => {
   })
 })
 
-// Redirect /XXXX/YYYYY to /YYY
+// Redirect /XXXX/YYYYY to https://www.radiocrestin.ro/YYY
 app.get('/:category/:station', (c) => {
   const station = c.req.param('station')
-  return c.redirect(`/${station}`, 301)
+  return c.redirect(`https://www.radiocrestin.ro/${station}`, 301)
 })
 
 export default app

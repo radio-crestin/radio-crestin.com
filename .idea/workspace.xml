@@ -5,134 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c169245-f477-44c8-a97e-7095f7031ef0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/radio-crestin.com.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backendServices/listen.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backendServices/review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backendServices/stations.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Analytics/Analytics.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Body/Body.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Body/Body.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ContactButton/EmailButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ContactModalLink/ContactModalLink.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DownloadAppBanner/DownloadAppBanner.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DownloadAppBanner/DownloadAppBanner.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Footer/Footer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HeadContainer/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/HeaderMenu/HeaderMenu.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ImageWithFallback/ImageWithFallback.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InstallAppButton/InstallAppButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InstallMobileAppButton/InstallMobileAppButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InstallMobileAppButton/styles.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InviteButton/InviteButton.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InviteButton/InviteButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RandomStationButton/RandomStationButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SearchStationsModal/SearchStationsModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ShareOnSocial/ShareOnSocial.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SongInformation/SongInformation.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationGroups/StationGroups.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationHomepageHeader/StationHomepageHeader.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationInformation/StationInformation.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationList/StationList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationMetadata/StationMetadata.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/StationPlayer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/WhatsAppBibleGroup/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/WhatsAppBibleGroup/styles.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/WhatsAppButton/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/WhatsAppButton/styles.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontendServices/listen.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontendServices/review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/useSpaceBarPress.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/useWindowSize.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/[station_category_slug]/[station_slug].tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/[station_category_slug]/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/v1/listen.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/v1/refresh_cache.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/v1/review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/v1/stations.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/privacy-policy.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/robots.txt.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/sitemap.xml.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.well-known/assetlinks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/facebook.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/facebook.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/whatsapp.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/app-store-badge.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/appgallery.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/appstore.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/castTV.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/default-station-thumbnail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/google-play-badge.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/header-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/headphone.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/image-008.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/loading.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/playstore.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/qr-code.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/site.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/safari-pinned-tab.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/_all.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/base.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/fonts.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/globalVariables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/mixinHelper.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/reset.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/initStations.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/listen.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/Home.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globalVariables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/mixinHelper.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.tsbuildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/capitalize.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/cdnImageLoader.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/env.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/indexBy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/seo.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/state.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,9 +54,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
     "npm.start:dev.executor": "Run",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "ts.external.directory.path": "/Users/iosif/Documents/Projects/radio-crestin.com/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/iosif/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -239,7 +113,7 @@
       <updated>1736278163638</updated>
       <workItem from="1736278164712" duration="993000" />
       <workItem from="1745779749674" duration="3979000" />
-      <workItem from="1754036968216" duration="170000" />
+      <workItem from="1754036968216" duration="479000" />
     </task>
     <servers />
   </component>
