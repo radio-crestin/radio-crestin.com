@@ -132,6 +132,11 @@ app.get('/sitemap.xml', (c) => {
   })
 })
 
+// Redirect /XXXX to https://www.radiocrestin.ro/
+app.get('/:category', (c) => {
+  return c.redirect('https://www.radiocrestin.ro/', 301)
+})
+
 // Redirect /XXXX/YYYYY to https://www.radiocrestin.ro/YYY
 app.get('/:category/:station', (c) => {
   const station = c.req.param('station')
