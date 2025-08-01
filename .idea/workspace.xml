@@ -99,8 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.start:dev" />
       </list>
     </recent_temporary>

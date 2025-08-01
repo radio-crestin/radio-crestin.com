@@ -77,19 +77,19 @@ const stations = [
 function generateSitemap(): string {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  
+
   // Add homepage
   xml += '    <url>\n'
   xml += '        <loc>https://www.radio-crestin.com/</loc>\n'
   xml += '    </url>\n'
-  
+
   // Add all radio stations
   stations.forEach(station => {
     xml += '    <url>\n'
     xml += `        <loc>https://www.radio-crestin.com/${station.category}/${station.slug}</loc>\n`
     xml += '    </url>\n'
   })
-  
+
   // Add category-specific station pages
   const categoryStations = {
     'general': ['rve-oradea', 'rve-brasov', 'rve-timisoara', 'radio-unison', 'aripi-spre-cer', 'rve-predici', 'rve-constanta', 'rve-hunedoara', 'rve-satu-mare', 'rve-zalau', 'alt-fm', 'radio-armonia', 'radio-de-cuvant', 'rve-bucuresti', 'sos-ploiesti', 'radio-philadelphia', 'rve-sibiu', 'radio-philadelphia-melbourne', 'radio-calea-spre-cer', 'rve-cluj', 'rve-suceava', 'radio-micul-samaritean'],
@@ -105,7 +105,7 @@ function generateSitemap(): string {
     'biblia': ['radio-calea-spre-cer-biblia'],
     'colinde': ['radio-filadelfia-christmas', 'aripi-spre-cer-special']
   }
-  
+
   // Add category-specific URLs
   Object.entries(categoryStations).forEach(([category, stationSlugs]) => {
     stationSlugs.forEach(slug => {
@@ -114,7 +114,7 @@ function generateSitemap(): string {
       xml += '    </url>\n'
     })
   })
-  
+
   xml += '</urlset>\n'
   return xml
 }
@@ -130,11 +130,6 @@ app.get('/sitemap.xml', (c) => {
   return c.text(sitemap, 200, {
     'Content-Type': 'application/xml'
   })
-})
-
-// Redirect /XXXX to https://www.radiocrestin.ro/
-app.get('/:category', (c) => {
-  return c.redirect('https://www.radiocrestin.ro/', 301)
 })
 
 // Redirect /XXXX/YYYYY to https://www.radiocrestin.ro/YYY
